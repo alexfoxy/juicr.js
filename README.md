@@ -33,7 +33,7 @@ const juicr = new Juicr({ initialState: { count: 0 } })
 2) Add an action with a name and a function that returns the changed state:
 ```javascript
 juicr.action("count", (amount, _state) => {
-	return { count: count += amount }
+	return { count: _state.count += amount }
 })
 ```
 3) Listen to state changes. You can either listen to a single property, an array or use `*` to listen to all changes:
@@ -48,7 +48,7 @@ setInterval(() => {
 	juicr.dispatch("count", 1)
 }, 1000)
 ```
-Play with this example in CodePen.
+Play with this example in [CodePen](https://codepen.io/alexfoxy/pen/gyNaYw).
 
 For use with React see #use-with-react--react-native
 
@@ -136,9 +136,10 @@ Alternatively you could pass the entire juicr to your components and let them ha
 constructor(props) {
 	...
 	this.state = { username: '', photoUrl: '' }
-    props.userJuicr.listen(["username", "photoUrl", (changedState, _state) => {
-      this.setState({ ...changedState })
-    })
-    ...
+
+	props.userJuicr.listen(["username", "photoUrl", (changedState, _state) => {
+		this.setState({ ...changedState })
+	})
+	...
 }
  ```
