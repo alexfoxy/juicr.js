@@ -7,8 +7,7 @@ A simple (and tiny ~1kb) redux inspired reducer for handling state, actions, rea
 I liked the redux pattern but the amount of boiler plate seemed overkill, especially for smaller projects.
 
 ### Examples
-React TODO example
-Reef.js TODO example
+[React.js Todo](https://codepen.io/alexfoxy/pen/eowpdb)
 
 ## Setup
 Add the package to your project either with:
