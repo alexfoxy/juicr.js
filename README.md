@@ -25,7 +25,7 @@ yarn add juicr.js
 
 or for browsers:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/juicr.js" >
+<script src="https://cdn.jsdelivr.net/npm/juicr.js" ></script>
 ```
 
 ## Simple example
