@@ -40,8 +40,9 @@ juicr.action("count", (amount, _state) => {
 ```
 3) Listen to state changes. You can either listen to a single property, an array or use `*` to listen to all changes:
 ```javascript
-juicr.listen("count", (changedState, _state) => {
-	console.log(changedState.count)
+juicr.listen("*", (changedState, _state) => {
+	document.body.innerHTML = changedState.count
+	/* or your front end library update function e.g. this.setState({ ...changedState }) */
 })
 ```
 4) Dispatch actions to the Juicr:
@@ -52,7 +53,7 @@ setInterval(() => {
 ```
 Play with this example in [CodePen](https://codepen.io/alexfoxy/pen/gyNaYw).
 
-For use with React see #use-with-react--react-native
+For use with React see [Use with React & React Native](https://github.com/alexfoxy/juicr.js#use-with-react--react-native
 
 ## API
 #### `new Juicr({ initialState={}, dev=false })`
