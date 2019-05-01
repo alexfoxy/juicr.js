@@ -1,5 +1,4 @@
-
-# juicr.js
+![juicr.js](https://i.imgur.com/9GUDkeH.png?1)
 
 A simple (and tiny ~1kb) redux inspired reducer for handling state, actions, reactions etc. Works well with React.js & React Native but can be combined with any front end library.
 
