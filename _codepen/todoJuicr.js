@@ -1,5 +1,5 @@
-window.createToDoJuicer = (state) => {
-  const juicer = new window.Juicer({ initialState: state, dev: true })
+window.createToDoJuicr = (state) => {
+  const juicr = new window.Juicr({ initialState: state, dev: true })
 
   let id = 0
 
@@ -8,7 +8,7 @@ window.createToDoJuicer = (state) => {
     return todos[i]
   }
 
-  juicer.action('addTodo', ({ }, _state) => {
+  juicr.action('addTodo', ({ }, _state) => {
     if(_state.newTodo.length === 0) {
       return { errorText: "cannot create empty todo" }
     } else {
@@ -25,15 +25,15 @@ window.createToDoJuicer = (state) => {
     }
   })
 
-  juicer.action('textInput', ({ text }, _state) => {
+  juicr.action('textInput', ({ text }, _state) => {
     return { newTodo: text }
   })
 
-  juicer.action('setFilter', ({ filter }, _state) => {
+  juicr.action('setFilter', ({ filter }, _state) => {
     return { filter }
   })
 
-  juicer.action('toggleAll', ({ }, _state) => {
+  juicr.action('toggleAll', ({ }, _state) => {
     return {
       todos: _state.todos.map((t) => {
         t.isComplete = true
@@ -42,7 +42,7 @@ window.createToDoJuicer = (state) => {
     }
   })
 
-  juicer.action('toggleDone', ({ id }, _state) => {
+  juicr.action('toggleDone', ({ id }, _state) => {
     const todo = findToDoFromId(_state.todos, id)
     if(todo) {
       todo.isComplete = !todo.isComplete
@@ -52,7 +52,7 @@ window.createToDoJuicer = (state) => {
     }
   })
 
-  juicer.action('toggleEdit', ({ id }, _state) => {
+  juicr.action('toggleEdit', ({ id }, _state) => {
     const todo = findToDoFromId(_state.todos, id)
     if(todo) {
       todo.isEditing = !todo.isEditing
@@ -62,7 +62,7 @@ window.createToDoJuicer = (state) => {
     }
   })
 
-  juicer.action('updateTodo', ({ id, title }, _state) => {
+  juicr.action('updateTodo', ({ id, title }, _state) => {
     const todo = findToDoFromId(_state.todos, id)
     if(todo) {
       todo.title = title
@@ -72,15 +72,15 @@ window.createToDoJuicer = (state) => {
     }
   })
 
-  juicer.action('clearCompleted', ({}, _state) => {
+  juicr.action('clearCompleted', ({}, _state) => {
     return { todos: _state.todos.filter(t => t.isComplete === false ) }
   })
 
-  juicer.action('delete', ({ id }, _state) => {
+  juicr.action('delete', ({ id }, _state) => {
     return { todos: _state.todos.filter(t => t.id !== id ) }
   })
 
-  juicer.reaction(["todos", "filter"], (changedState, _state) => {
+  juicr.reaction(["todos", "filter"], (changedState, _state) => {
     const filters = {
       all: (t) => { return t },
       completed: (t) => { return t.isComplete === true },
@@ -93,5 +93,5 @@ window.createToDoJuicer = (state) => {
     }
   })
 
-  return juicer
+  return juicr
 }
