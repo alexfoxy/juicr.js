@@ -7,7 +7,9 @@ A simple (and tiny ~1kb) redux inspired reducer for handling state, actions, rea
 I liked the redux pattern but the amount of boiler plate seemed overkill, especially for smaller projects.
 
 ### Examples
-[React.js Todo](https://codepen.io/alexfoxy/pen/eowpdb)
+All examples use the same [juicr](https://github.com/alexfoxy/juicr.js/blob/master/codepen_ext/todoJuicr.js) code.
+
+- [React.js Todo](https://codepen.io/alexfoxy/pen/eowpdb)
 
 ## Setup
 Add the package to your project either with:
