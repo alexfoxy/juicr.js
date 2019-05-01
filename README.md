@@ -50,7 +50,7 @@ setInterval(() => {
 ```
 Play with this example in CodePen.
 
-For use with React see #Use with React & React Native
+For use with React see #use-with-react--react-native
 
 ## API
 ### `new Juicr({ initialState={}, dev=false })`
