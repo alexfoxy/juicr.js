@@ -7,9 +7,10 @@ A simple (and tiny ~1kb) redux inspired reducer for handling state, actions, rea
 I liked the redux pattern but the amount of boiler plate seemed overkill, especially for smaller projects.
 
 ### Examples
-All examples use the same [juicr](https://github.com/alexfoxy/juicr.js/blob/master/codepen_ext/todoJuicr.js) code.
+All examples use the same [juicr](https://github.com/alexfoxy/juicr.js/blob/master/codepen_ext/todoJuicr.js) reducer code.
 
 - [React.js Todo](https://codepen.io/alexfoxy/pen/eowpdb)
+- [Vanilla JS Todo](https://codepen.io/alexfoxy/pen/wZLWpp)
 - [Reef.js Todo](https://codepen.io/alexfoxy/pen/vMqNbZ)
 
 ## Setup
@@ -40,8 +41,9 @@ juicr.action("count", (amount, _state) => {
 ```
 3) Listen to state changes. You can either listen to a single property, an array or use `*` to listen to all changes:
 ```javascript
-juicr.listen("count", (changedState, _state) => {
-	console.log(changedState.count)
+juicr.listen("*", (changedState, _state) => {
+	document.body.innerHTML = changedState.count
+	/* or your front end library update function e.g. this.setState({ ...changedState }) */
 })
 ```
 4) Dispatch actions to the Juicr:
@@ -52,7 +54,7 @@ setInterval(() => {
 ```
 Play with this example in [CodePen](https://codepen.io/alexfoxy/pen/gyNaYw).
 
-For use with React see #use-with-react--react-native
+For use with React see: [Use with React & React Native](https://github.com/alexfoxy/juicr.js#use-with-react--react-native)
 
 ## API
 #### `new Juicr({ initialState={}, dev=false })`
