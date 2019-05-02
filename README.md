@@ -1,7 +1,6 @@
+![juicr.js](https://i.imgur.com/9GUDkeH.png?1)
 
-# juicr.js
-
-A simple (and tiny ~1kb) redux inspired reducer for handling state, actions, reactions etc. Works well with React.js & React Native but can be combined with any front end library.
+A simple (and tiny ~1kb) redux inspired reducer for handling state, actions, reactions etc. Works well with React.js & React Native but can be combined with any front end library, or even vanilla JS template literals.
 
 ### Why?
 I liked the redux pattern but the amount of boiler plate seemed overkill, especially for smaller projects.
@@ -25,7 +24,7 @@ yarn add juicr.js
 
 or for browsers:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/juicr.js" >
+<script src="https://cdn.jsdelivr.net/npm/juicr.js" ></script>
 ```
 
 ## Simple example
