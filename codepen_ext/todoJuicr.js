@@ -4,7 +4,7 @@ window.createToDoJuicr = (state) => {
   let id = 0
 
   function findToDoFromId(todos, id) {
-    const i = todos.findIndex(t => t.id = id)
+    const i = todos.findIndex(t => t.id === id)
     return todos[i]
   }
 
