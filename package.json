@@ -1,6 +1,6 @@
 {
   "name": "juicr.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
     "test": "mocha",
     "build": "babel src -d lib; uglifyjs lib/juicr.js -o lib/juicr.min.js -c -m; gzip < lib/juicr.min.js > lib/juicr.min.js.gz;"

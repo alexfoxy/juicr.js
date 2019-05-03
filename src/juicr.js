@@ -3,7 +3,6 @@
     constructor(o={}) {
       this.actions = {}
       this.listeners = []
-      this.reactions = []
       this._state = o.initialState||{}
       this.dev = o.dev
 
@@ -16,13 +15,12 @@
       this.dispatch = this.dispatch.bind(this)
       this.action = this.action.bind(this)
       this.listen = this.listen.bind(this)
-      this.reaction = this.reaction.bind(this)
     }
 
     action(actionName, fn) {
-      this.actions[actionName] = (o, _state) => {
+      this.actions[actionName] = (_state, o) => {
         return new Promise((resolve, reject) => {
-          const res = fn(o, _state)
+          const res = fn(_state, o)
 
           if(res || res === undefined) {
             resolve(res)
@@ -49,28 +47,6 @@
       return listener.unsubscribe
     }
 
-    reaction(props, fn) {
-      const reaction = {
-        props: typeof props === 'string' ? [props] : props,
-        fn
-      }
-
-      this.reactions.push(reaction)
-
-      // run reaction first time
-      const s = {}
-
-      reaction.props.forEach((p) => {
-        s[p] = this._state[p]
-      })
-
-      const computedState = fn(s, this._state)
-      this._updateState(computedState)
-      //////
-
-      return reaction
-    }
-
     _updateState(changedState) {
       this._state = { ...this._state, ...changedState }
       const changedKeys = Object.keys(changedState)
@@ -86,15 +62,6 @@
           }
         }
       })
-
-      this.reactions.forEach(({ props, fn } ) => {
-        let doReaction = props.filter(element => changedKeys.includes(element)).length > 0
-
-        if(doReaction) {
-          const computedState = fn(changedState, this._state)
-          if(computedState) this._updateState(computedState)
-        }
-      })
     }
 
     dispatch(actionName, o) {
@@ -105,7 +72,7 @@
         return
       }
 
-      return action(o||{}, this._state).then((changedState) => {
+      return action(this._state, o||{}).then((changedState) => {
         if(changedState) {
           this._updateState(changedState)
           return changedState

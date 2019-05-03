@@ -15,7 +15,7 @@ describe('Juicr', () => {
   it('should be able to add action and dispatch with listener', function(done) {
       const juicr = new Juicr({ initialState: { text: '' }})
 
-      juicr.action("setText", (text) => {
+      juicr.action("setText", (state, text) => {
         return { text }
       })
 
@@ -30,7 +30,7 @@ describe('Juicr', () => {
   it('should be able to add async action and dispatch with listener', function(done) {
       const juicr = new Juicr({ initialState: { text: '' }})
 
-      juicr.action("setText", (text) => {
+      juicr.action("setText", (state, text) => {
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve({ text })
@@ -47,11 +47,11 @@ describe('Juicr', () => {
   it('should be able to listen to many props', function() {
       const juicr = new Juicr({ initialState: { text: '', number: 0 }})
 
-      juicr.action("setText", (text) => {
+      juicr.action("setText", (state, text) => {
         return { text }
       })
 
-      juicr.action("setNumber", (number) => {
+      juicr.action("setNumber", (state, number) => {
         return { number }
       })
 
@@ -72,7 +72,7 @@ describe('Juicr', () => {
   it('should be able to unsubscribe listener', function() {
       const juicr = new Juicr({ initialState: { text: '' }})
 
-      juicr.action("setText", (text) => {
+      juicr.action("setText", (state, text) => {
         return { text }
       })
 
@@ -81,43 +81,4 @@ describe('Juicr', () => {
 
       expect(juicr.listeners.length).to.equal(0)
   });
-
-  it('should be able to add reaction', function(done) {
-      const juicr = new Juicr({ initialState: { text: '' }})
-
-      juicr.action("setText", (text) => {
-        return { text }
-      })
-
-      juicr.reaction("text", (changedState) => {
-        return { textExtra: changedState.text + "2" }
-      })
-
-      juicr.listen("textExtra", (changedState) => {
-        expect(changedState.textExtra).to.equal("hello2")
-        done()
-      })
-
-      juicr.dispatch("setText", "hello")
-  });
-
-  it('should run reaction when add', function(done) {
-      const juicr = new Juicr({ initialState: { text: 'hello' }})
-
-      juicr.action("setText", (text) => {
-        return { text }
-      })
-
-      juicr.listen("textExtra", (changedState) => {
-        expect(changedState.textExtra).to.equal("hello2")
-        done()
-      })
-
-      juicr.reaction("text", (changedState) => {
-        return { textExtra: changedState.text + "2" }
-      })
-  });
-
-  // should throw error
-  // should warn chain reaction
 })
