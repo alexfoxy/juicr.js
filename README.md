@@ -1,10 +1,6 @@
 ![juicr.js](https://i.imgur.com/9GUDkeH.png?1)
 
-<<<<<<< HEAD
-A simple (and tiny ~1kb) redux inspired reducer for handling state changes. Works well with React.js & React Native but can be combined with any front end library, or even vanilla JS template literals.
-=======
-A simple (and tiny <1kb) redux inspired reducer for handling state, actions, reactions etc. Works well with React.js & React Native but can be combined with any front end library, or even vanilla JS template literals.
->>>>>>> b19d80598b17000f2cd51e08076ffb1408f362cf
+A simple (and tiny <1kb) redux inspired reducer for handling state changes. Works well with React.js & React Native but can be combined with any front end library, or even vanilla JS template literals.
 
 ### Why?
 I liked the redux pattern but the amount of boiler plate seemed overkill, especially for smaller projects.
@@ -95,9 +91,16 @@ Or use the special character `*` to listen to any changes on the state:
 juicr.listen("*", (changedState, _state) => {})
 ```
 
+## Reactions & `juicr.updateState()`
+Reactions have been removed in version 1.1.0 to simplify code base. If you need _computed_ properties use `listen` and `updateState`, e.g.
+```
+juicr.listen('count', ({ count }, _state) => {
+	juicr.updateState({ countIsPositive: count > 0 })
+})
+```
 
 ## Asynchronous actions
-Actions can return a `Promise` which resolves with the state changes. When dispatching use `.then` for triggering other actions or `.catch` for errors. Eg.
+Actions can return a `Promise` which resolves with the state changes. When dispatching use `.then` for triggering other actions or `.catch` for errors, e.g.
 
 ```javascript
 juicr.action("setText", (state, text) => {
