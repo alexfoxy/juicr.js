@@ -91,7 +91,7 @@ Or use the special character `*` to listen to any changes on the state:
 juicr.listen("*", (changedState, _state) => {})
 ```
 
-## Reactions & `juicr.updateState()`
+## Reactions & juicr.updateState()
 Reactions have been removed in version 1.1.0 to simplify code base. If you need _computed_ properties use `listen` and `updateState`, e.g.
 ```
 juicr.listen('count', ({ count }, _state) => {
