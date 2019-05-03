@@ -47,7 +47,7 @@
       return listener.unsubscribe
     }
 
-    _updateState(changedState) {
+    updateState(changedState) {
       this._state = { ...this._state, ...changedState }
       const changedKeys = Object.keys(changedState)
 
@@ -74,7 +74,7 @@
 
       return action(this._state, o||{}).then((changedState) => {
         if(changedState) {
-          this._updateState(changedState)
+          this.updateState(changedState)
           return changedState
         } else {
           return {}

@@ -1,6 +1,6 @@
 ![juicr.js](https://i.imgur.com/9GUDkeH.png?1)
 
-A simple (and tiny ~1kb) redux inspired reducer for handling state, actions, reactions etc. Works well with React.js & React Native but can be combined with any front end library, or even vanilla JS template literals.
+A simple (and tiny ~1kb) redux inspired reducer for handling state changes. Works well with React.js & React Native but can be combined with any front end library, or even vanilla JS template literals.
 
 ### Why?
 I liked the redux pattern but the amount of boiler plate seemed overkill, especially for smaller projects.
@@ -35,8 +35,8 @@ const juicr = new Juicr({ initialState: { count: 0 } })
 ```
 2) Add an action with a name and a function that returns the changed state:
 ```javascript
-juicr.action("count", (amount, _state) => {
-	return { count: _state.count += amount }
+juicr.action("count", (state, amount) => {
+	return { count: state.count += amount }
 })
 ```
 3) Listen to state changes. You can either listen to a single property, an array or use `*` to listen to all changes:
@@ -64,8 +64,8 @@ Initializes a new Juicr. Pass in an `initialState` object and an optional `dev` 
 #### `juicr.action('actionName', (data, _state) => { })`
 Adds a dispatchable **action** to the Juicr. Specify the `actionName` and a `function` that returns the state changes. The `data` is passed in from the **dispatch** call as well as the current Juicr `_state`. For example:
 ```javascript
-juicr.action('delete', ({ id }, _state) => {
-	return { items: _state.items.filter(t => t.id !== id ) }
+juicr.action('delete', (state, { id }) => {
+	return { items: state.items.filter(t => t.id !== id ) }
 })
 ```
 
@@ -78,7 +78,7 @@ juicr.dispatch("delete", { id: 1 })
 
 
 #### `juicr.listen('propName', (changedState, _state) => { })`
-Listens to changes to the **state** either from an action, or a reaction. You can either specify a single property:
+Listens to changes to the **state** either from an action. You can either specify a single property:
 ```javascript
 juicr.listen("items", (changedState, _state) => { })
 ```
@@ -90,21 +90,13 @@ Or use the special character `*` to listen to any changes on the state:
 ```javascript
 juicr.listen("*", (changedState, _state) => {})
 ```
-#### `juicr.reaction('propName', (changedState, _state) => { })`
-Reacts to changes in the state and returns new state changes, essentially like a computed property. Similar to **listen** you can react to changes on a single property, an array of properties, or any change using `*`.
-
-```javascript
-juicr.reaction('count', ({ count }, _state) => {
-	return { countIsPositive: count > 0 }
-})
-```
 
 
 ## Asynchronous actions
 Actions can return a `Promise` which resolves with the state changes. When dispatching use `.then` for triggering other actions or `.catch` for errors. Eg.
 
 ```javascript
-juicr.action("setText", (text) => {
+juicr.action("setText", (state, text) => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
 			resolve({ text })
