@@ -1,6 +1,10 @@
 ![juicr.js](https://i.imgur.com/9GUDkeH.png?1)
 
+<<<<<<< HEAD
 A simple (and tiny ~1kb) redux inspired reducer for handling state changes. Works well with React.js & React Native but can be combined with any front end library, or even vanilla JS template literals.
+=======
+A simple (and tiny <1kb) redux inspired reducer for handling state, actions, reactions etc. Works well with React.js & React Native but can be combined with any front end library, or even vanilla JS template literals.
+>>>>>>> b19d80598b17000f2cd51e08076ffb1408f362cf
 
 ### Why?
 I liked the redux pattern but the amount of boiler plate seemed overkill, especially for smaller projects.
