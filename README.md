@@ -9,6 +9,7 @@ I liked the redux pattern but the amount of boiler plate seemed overkill, especi
 All examples use the same [juicr](https://github.com/alexfoxy/juicr.js/blob/master/codepen_ext/todoJuicr.js) reducer code.
 
 - [React.js Todo](https://codepen.io/alexfoxy/pen/eowpdb)
+- [Preact.js Todo](https://codepen.io/alexfoxy/pen/Pgrgja)
 - [Vanilla JS Todo](https://codepen.io/alexfoxy/pen/wZLWpp)
 - [Reef.js Todo](https://codepen.io/alexfoxy/pen/vMqNbZ)
 
