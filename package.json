@@ -1,14 +1,14 @@
 {
   "name": "juicr.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "scripts": {
     "test": "mocha",
     "build": "babel src -d lib; uglifyjs lib/juicr.js -o lib/juicr.min.js -c -m; gzip < lib/juicr.min.js > lib/juicr.min.js.gz;"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
     "chai": "^4.2.0",
     "mocha": "^6.1.4"
   },
